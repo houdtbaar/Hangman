@@ -1,0 +1,3 @@
+houdtbaar_hangman:
+    resource: "@HoudtbaarHangmanBundle/Resources/config/routing.yml"
+    prefix:   /

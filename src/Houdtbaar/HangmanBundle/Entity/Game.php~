@@ -1,0 +1,137 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: evanhoudt
+ * Date: 21/06/15
+ * Time: 10:42
+ */
+
+namespace Houdtbaar\HangmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Table(name="game")
+ * @ORM\Entity(repositoryClass="Houdtbaar\HangmanBundle\Repository\GameRepository")
+ */
+class Game {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Word")
+     * @ORM\JoinColumn(name="word_id", referencedColumnName="id")
+     */
+    protected $word;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $triesLeft;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    protected $status;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $guessedLetters;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $triedLetters;
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWord() {
+        return $this->word;
+    }
+
+    /**
+     * @param mixed $word
+     */
+    public function setWord($word) {
+        $this->word = $word;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTriesLeft() {
+        return $this->triesLeft;
+    }
+
+    /**
+     * @param mixed $triesLeft
+     */
+    public function setTriesLeft($triesLeft) {
+        $this->triesLeft = $triesLeft;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus() {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGuessedLetters() {
+        return $this->guessedLetters;
+    }
+
+    /**
+     * @param mixed $guessedLetters
+     */
+    public function setGuessedLetters($guessedLetters) {
+        $this->guessedLetters = $guessedLetters;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTriedLetters() {
+        return $this->triedLetters;
+    }
+
+    /**
+     * @param mixed $triedLetters
+     */
+    public function setTriedLetters($triedLetters) {
+        $this->triedLetters = $triedLetters;
+    }
+
+
+}

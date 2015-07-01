@@ -1,0 +1,23 @@
+houdtbaar_hangman_game_new:
+    path:     /games
+    defaults: { _controller: houdtbaar_hangman.game_controller:GameNewAction }
+    methods:  [POST]
+
+houdtbaar_hangman_game_overview:
+    path:     /games
+    defaults: { _controller: houdtbaar_hangman.game_controller:gameOverviewAction }
+    methods:  [GET]
+
+houdtbaar_hangman_game_gues:
+    path:     /games/{id}
+    defaults: { _controller: houdtbaar_hangman.game_controller:gameGuessAction }
+    methods:  [POST]
+    requirements:
+        id:  \d+
+
+houdtbaar_hangman_game_response:
+    path:     /games/{id}
+    defaults: { _controller: houdtbaar_hangman.game_controller:gameResponseAction }
+    methods:  [GET]
+    requirements:
+        id:  \d+

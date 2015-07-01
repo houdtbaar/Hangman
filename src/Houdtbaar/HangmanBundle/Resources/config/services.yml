@@ -1,0 +1,29 @@
+services:
+#    houdtbaar_hangman.example:
+#        class: Houdtbaar\HangmanBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+services:
+#    houdtbaar_hangman.word_gateway:
+#        class:  Houdtbaar\HangmanBundle\Gateway\WordGateway
+
+#    houdtbaar_hangman.word_repository:
+#        class:     Houdtbaar\HangmanBundle\Repository\WordRepository
+#        arguments: ["@houdtbaar_hangman.word_gateway"]
+
+    houdtbaar_hangman.word_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - Houdtbaar\HangmanBundle\Entity\Word
+
+    houdtbaar_hangman.game_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - Houdtbaar\HangmanBundle\Entity\Game
+
+    houdtbaar_hangman.game_controller:
+        class:     Houdtbaar\HangmanBundle\Controller\GameController
+        arguments: ["@doctrine.orm.default_entity_manager", "@request_stack", "@houdtbaar_hangman.game_repository", "@houdtbaar_hangman.word_repository"]
